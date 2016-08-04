@@ -37,13 +37,13 @@ func main() {
 	generator.NoLoop = *noloop
 	err := generator.Generate(*input, *output)
 	if err != nil {
-		log.Printf("ERROR: %s", err.Error())
+		log.Printf("GENERATOR MAIN ERROR: %s", err.Error())
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 	absPath, err := filepath.Abs(*output)
 	if err != nil {
-		log.Printf("ERROR: %s", err.Error())
+		log.Printf("ABSPATH MAIN ERROR: %s", err.Error())
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
