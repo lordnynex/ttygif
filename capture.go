@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"strconv"
@@ -101,6 +102,7 @@ func captureByScreencapture(path string) (fileType string, err error) {
 func captureByXwd(path string) (fileType string, err error) {
 	out, err := exec.Command("which", "xwd").CombinedOutput()
 	if err != nil {
+		log.Printf("Saw an error for %s: %s", path, err.Error())
 		return "", fmt.Errorf(string(out))
 	}
 
@@ -110,11 +112,16 @@ func captureByXwd(path string) (fileType string, err error) {
 		if err == nil {
 			success = true
 			break
+		} else {
+			log.Printf("Saw an error for %s: %s", path, err.Error())
 		}
+
 		time.Sleep(time.Millisecond * 100)
 	}
 	if success {
 		return "xwd", nil
 	}
+
+	log.Printf("Saw an error for %s: %s", path, "Not successful")
 	return
 }
