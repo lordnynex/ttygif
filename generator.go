@@ -25,12 +25,16 @@ func NewGifGenerator() *GifGenerator {
 
 // Generate writes to outFile an animated GIF
 func (g *GifGenerator) Generate(inFile string, outFile string) (err error) {
-	tempDir, err := ioutil.TempDir("", "ttygif")
+	tmpLocation := os.Getenv("TTYGIF_TMP")
+	tempDir, err := ioutil.TempDir(tmpLocation, "ttygif")
 	if err != nil {
 		log.Println("FNR: 28")
 		return
 	}
-	defer os.RemoveAll(tempDir)
+
+	if os.Getenv("TTYGIF_NOCLEAN") == "" {
+		defer os.RemoveAll(tempDir)
+	}
 
 	var (
 		delays    []int
