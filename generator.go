@@ -76,7 +76,8 @@ func (g *GifGenerator) Generate(inFile string, outFile string) (err error) {
 	}()
 	images, err := worker.GetAllImages()
 	if err != nil {
-		log.Println("FNR: 79")
+		log.Printf("FNR: 79 | %s", err.Error())
+		log.Printf("IMAGES: %+v", images)
 		return
 	}
 	close(progress)
