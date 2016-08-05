@@ -109,7 +109,7 @@ func captureByXwd(path string) (fileType string, err error) {
 	var success = false
 	for i := 0; i < 10; i++ {
 		// err = exec.Command("xwd", "-silent", "-id", os.Getenv("WINDOWID"), "-out", path).Run()
-		err = exec.Command("xwd", "-silent", "-id", os.Getenv("WINDOWID"), "-out", path, "-display", os.Getenv("DISPLAY"), "-nobdrs").Run()
+		err = exec.Command("xwd", "-id", os.Getenv("WINDOWID"), "-out", path, "-display", os.Getenv("DISPLAY"), "-nobdrs").Run()
 		if err == nil {
 			success = true
 			break
