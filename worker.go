@@ -81,7 +81,7 @@ Loop:
 			if output.err != nil {
 				log.Printf("DEBUG INPUTS: %+v", w.inputs)
 				log.Printf("DEBUG OUTPUT: %+v", output)
-				log.Printf("WFNR: 79 | %s", output.err.Error())
+				log.Printf("WFNR: 84 | %s", output.err.Error())
 				return nil, output.err
 			}
 			results[output.index] = output.paletted
@@ -150,6 +150,8 @@ func decode(filePath string, fileType string) (paletted *image.Paletted, err err
 	// decode
 	img, err := decoder(file)
 	if err != nil {
+		log.Printf("DEBUG OUTPUT: %+v %s", file, fileType)
+		log.Printf("WFNR: 154 | %+v ", err)
 		return
 	}
 	paletted = image.NewPaletted(img.Bounds(), palette.WebSafe)
