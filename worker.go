@@ -2,13 +2,15 @@ package main
 
 import (
 	"errors"
-	"github.com/sugyan/ttygif/image/xwd"
 	"image"
 	"image/color/palette"
 	"image/png"
 	"io"
+	"log"
 	"os"
 	"sync"
+
+	"github.com/sugyan/ttygif/image/xwd"
 )
 
 // WorkerInput type
@@ -77,6 +79,9 @@ Loop:
 				break Loop
 			}
 			if output.err != nil {
+				log.Printf("DEBUG INPUTS: %+v", w.inputs)
+				log.Printf("DEBUG OUTPUT: %+v", output)
+				log.Printf("WFNR: 79 | %s", output.err.Error())
 				return nil, output.err
 			}
 			results[output.index] = output.paletted
