@@ -150,7 +150,7 @@ func decode(filePath string, fileType string) (paletted *image.Paletted, err err
 	// decode
 	img, err := decoder(file)
 	if err != nil {
-		log.Printf("DEBUG OUTPUT: %+v %s", file, fileType)
+		log.Printf("DEBUG OUTPUT: %+v %s", *file, fileType)
 		log.Printf("WFNR: 154 | %+v ", err)
 		return
 	}
